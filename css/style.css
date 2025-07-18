@@ -268,61 +268,80 @@ body {
     margin-bottom: 30px;
 }
 
-/* About Section */
+/* About Section - Penyempurnaan */
+.about-section {
+    background-color: var(--white); /* Pastikan background putih, atau sesuai keinginan */
+}
+
 .about-content {
     display: flex;
     flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    gap: 40px;
-    align-items: center;
-    justify-content: center; /* Tambahkan agar konten terpusat saat wrap */
+    gap: 60px; /* Tingkatkan jarak antar teks & gambar untuk ruang bernafas */
+    align-items: flex-start; /* Pastikan konten rata atas, tidak tengah secara vertikal */
+    justify-content: center; /* Tetap pusatkan secara horizontal saat ada ruang lebih */
 }
 
 .about-text {
     flex: 1;
-    min-width: 300px; /* Kurangi min-width agar lebih responsif di layar kecil */
-    /* Ganti 600px menjadi 300px agar lebih fleksibel di mobile, karena 600px mungkin terlalu lebar */
+    min-width: 400px; /* Beri min-width yang sedikit lebih besar untuk teks di desktop */
+    max-width: 700px; /* Batasi lebar maksimum teks untuk keterbacaan yang lebih baik */
+    padding-right: 20px; /* Beri sedikit padding agar teks tidak terlalu dekat dengan gambar */
+    line-height: 1.8; /* Tingkatkan line-height untuk keterbacaan */
 }
 
 .about-text h3 {
-    font-size: 2em;
+    font-size: 2.2em; /* Sedikit perbesar judul sub-bagian */
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Beri jarak yang lebih jelas */
+    font-weight: 700; /* Tebalkan sedikit untuk penekanan */
 }
 
 .about-text p {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     font-size: 1.1em;
     line-height: 1.7;
+    color: var(--text-color);
+    text-align: justify; /* <<< TAMBAHAN UNTUK RATA KANAN KIRI */
 }
 
 .about-text ul {
     list-style: none;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-left: 0;
 }
 
 .about-text ul li {
-    margin-bottom: 10px;
-    font-size: 1.1em;
-    color: var(--text-color);
+    margin-bottom: 12px;
+    font-size: 1.05em;
+    color: var(--dark);
+    display: flex;
+    align-items: flex-start;
+    /* text-align: justify; */ /* Anda bisa tambahkan ini juga jika list item Anda panjang dan ingin justified */
 }
 
 .about-text ul li i {
     color: var(--accent-color);
-    margin-right: 10px;
+    margin-right: 15px;
+    font-size: 1.2em;
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .about-image {
     flex: 1;
-    min-width: 250px; /* Kurangi min-width */
+    min-width: 350px;
+    max-width: 500px;
     text-align: center;
 }
 
 .about-image img {
     max-width: 100%;
-    height: auto; /* Penting untuk menjaga rasio aspek */
+    height: auto;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
 }
+/* About Section - Akhir perbaikan yang disarankan */
 
 
 /* Documentation/Gallery Section */
