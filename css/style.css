@@ -138,72 +138,126 @@ body {
     transform: translateY(-3px);
 }
 
-/* Responsive Adjustments for Header */
-@media (max-width: 992px) {
-    /* Header */
-    .header .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        padding-bottom: 15px;
-    }
-    .header .logo {
-        border-right: none;
-        padding-right: 0;
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-    /* Main Navigation */
-    .main-nav {
-        order: 1;
-        width: 100%;
-        margin-top: 15px;
-        display: none;
-        background-color: transparent;
-        padding: 0;
-        box-shadow: none;
+/* Header */
+.header {
+    background-color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        /* >>>>>> TAMBAHAN PENTING UNTUK SCROLL PADA MENU MOBILE <<<<<< */
-        /* Batasi tinggi menu agar tidak melebihi tinggi layar yang tersedia */
-        /* Sesuaikan 80px dengan perkiraan tinggi header saat menu belum terbuka */
-        max-height: calc(100vh - 80px); 
-        overflow-y: auto; /* Aktifkan scrollbar vertikal jika konten melebihi max-height */
-        -webkit-overflow-scrolling: touch; /* Untuk pengalaman scrolling yang lebih mulus di iOS */
-    }
-    .main-nav.active {
-        display: block;
-        background-color: var(--white); 
-        box-shadow: 0 5px 10px rgba(0,0,0,0.05); 
-        border-radius: var(--border-radius);
-        padding: 20px 0;
-        /* Pastikan properti max-height dan overflow-y dari .main-nav tetap berlaku di sini */
-    }
-    .main-nav .nav-list {
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-        width: 100%;
-    }
-    .main-nav .nav-list li {
-        width: 100%;
-        text-align: center;
-    }
-    .main-nav .nav-list a {
-        padding: 10px 0;
-        width: 100%;
-    }
-    .header-social-icons {
-        display: none;
-    }
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        z-index: 1001;
-    }
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; 
+}
 
-    /* ... (bagian CSS responsif lainnya tetap sama) ... */
+.header .logo {
+    display: flex;
+    align-items: center;
+    padding-right: 0; 
+    margin-right: 0;
+    border-right: none;
+}
+
+.header .logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.header .logo h1 {
+    font-size: 1.8em;
+    color: var(--dark);
+    margin: 0;
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+/* Main Navigation - Perbaikan Tampilan */
+.main-nav {
+    /* Latar belakang yang berbeda untuk memisahkan navigasi secara visual */
+    background-color: var(--light-bg); 
+    border-radius: var(--border-radius);
+    padding: 10px 20px; /* Padding di sekitar item navigasi agar background terlihat */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Bayangan halus untuk efek kedalaman */
+    transition: all var(--transition-speed) ease; /* Transisi untuk perubahan background/shadow */
+}
+
+.main-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.main-nav .nav-list a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 10px 0; 
+    position: relative;
+    display: inline-block;
+    transition: color var(--transition-speed) ease;
+}
+
+.main-nav .nav-list a:hover {
+    color: var(--primary-color);
+}
+
+.main-nav .nav-list a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: translateX(-50%) scaleX(0);
+    transition: transform var(--transition-speed) ease;
+}
+
+.main-nav .nav-list a:hover::after {
+    width: 100%;
+    transform: translateX(-50%) scaleX(1);
+}
+/* Akhir Perbaikan Tampilan Navigasi */
+
+
+.header-social-icons {
+    display: flex;
+    gap: 15px;
+    margin-left: 20px;
+    flex-shrink: 0; 
+}
+
+.header-social-icons a {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    transition: color var(--transition-speed) ease;
+}
+
+.header-social-icons a:hover {
+    color: var(--dark);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--dark);
+    cursor: pointer;
+    order: 2;
+    padding: 10px;
 }
 
 /* Hero Section */
@@ -693,8 +747,9 @@ textarea {
         order: 1;
         width: 100%;
         margin-top: 15px;
-        /* Mobile: background transparan saat menu tertutup */
-        background-color: transparent; 
+        display: none;
+        /* Saat mobile, background menu aktif akan putih, bukan light-bg */
+        background-color: transparent; /* Hapus background light-bg di mobile default */
         padding: 0; /* Hapus padding agar tidak ada ruang kosong saat menu tertutup */
         box-shadow: none; /* Hapus shadow di sini */
     }
@@ -721,7 +776,7 @@ textarea {
         width: 100%;
     }
     .header-social-icons {
-        display: none;
+        display: none; /* Sembunyikan ikon sosial di mobile agar tidak menumpuk */
     }
     .menu-toggle {
         display: block;
